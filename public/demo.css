@@ -157,7 +157,7 @@ to{opacity:1}}
 }
 
 /* === RESPONSIVE: MOBILE === */
-
+@media(max-width:768px){
 
 
 
@@ -186,7 +186,7 @@ to{opacity:1}}
 .btn{min-height:42px}
 .inp{min-height:42px}
 }
-
+@media(max-width:480px){
 /* === RESPONSIVE: SMALL PHONE === */
 
 .pg-hd h1{font-size:16px}
@@ -245,32 +245,6 @@ html{transition:background-color .3s,color .3s}
 .stat-box .sv{font-size:24px}
 }
 
-/* === RESPONSIVE: MOBILE === */
-@media(max-width:768px){
-.pg{padding:16px}
-.g4,.g3,.g2{grid-template-columns:1fr}
-.stat-row{flex-direction:column;gap:10px}
-.stat-box{padding:12px}
-.cd-val{font-size:18px}
-.cd-body{padding:14px}
-.pg-hd h1{font-size:18px}
-.pg-hd{margin-bottom:20px}
-.chart-box{height:160px}
-.list-item{padding:12px 14px}
-.modal{width:95%;max-width:none;border-radius:12px}
-.msg-bubble{max-width:85%}
-.invite-code{font-size:16px}
-.kb-grid{grid-template-columns:1fr}
-.node-load{width:70px}
-.node-ping{width:50px;font-size:11px}
-.toggle{flex-wrap:wrap}
-.toggle button{flex:1;min-width:0;font-size:11px;padding:6px 8px}
-.plan-price{font-size:24px!important}
-.toast-box{left:12px;right:12px;bottom:12px}
-.toast{min-width:auto;width:100%}
-.btn{min-height:42px}
-.inp{min-height:42px}
-}
 
 /* === RESPONSIVE: SMALL PHONE === */
 @media(max-width:480px){
