@@ -173,6 +173,7 @@ function go(pg){
 document.querySelectorAll('.pg').forEach(p=>p.remove());
 document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
 const btn=document.querySelector(`[data-pg="${pg}"]`);if(btn)btn.classList.add('on');
+if(window.innerWidth<=768)closeSidebar();
 const mn=document.getElementById('mn');
 mn.innerHTML=P[pg]?P[pg]():'<div class="pg on"><p>Page not found</p></div>';
 }

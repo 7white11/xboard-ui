@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Xboard — AI-Native UI</title><link rel="stylesheet" href="demo.css"></head><body>
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Xboard — AI-Native UI</title><link rel="stylesheet" href="demo.css"></head><body>
 <div class="app">
-<div class="mobile-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg><b style="font-size:15px">Xboard</b><div></div></div>
-<aside class="sb">
+<div class="mobile-hd"><button class="mobile-menu-btn" onclick="toggleSidebar()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg></button><b style="font-size:15px">Xboard</b><div></div></div>
+<div class="sb-overlay" onclick="closeSidebar()"></div>
+<aside class="sb" id="sidebar">
 <div class="sb-logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></i><b>Xboard</b></div>
 <nav class="nav">
 <div class="nav-group">Overview</div>
@@ -10,7 +11,7 @@
 <button class="ni" data-pg="traffic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>Traffic</button>
 <div class="nav-group">Account</div>
 <button class="ni" data-pg="plans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Plans</button>
-<button class="ni" data-pg="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg>Orders</button>
+<button class="ni" data-pg="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg>Orders</button>
 <button class="ni" data-pg="tickets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Tickets</button>
 <button class="ni" data-pg="invite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>Invite</button>
 <button class="ni" data-pg="kb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>KB</button>
@@ -18,6 +19,14 @@
 <button class="ni" data-pg="subscribe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Z"/><path d="M15.5 15.5 21 21"/></svg>Subscribe</button>
 <button class="ni" data-pg="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Profile</button>
 </nav>
+<div class="theme-section">
+<div class="theme-label">Theme</div>
+<div class="theme-btns">
+<button class="theme-btn" data-theme="dark" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>Dark</button>
+<button class="theme-btn" data-theme="light" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" x2="12" y1="1" y2="3"/><line x1="12" x2="12" y1="21" y2="23"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>Light</button>
+<button class="theme-btn on" data-theme="system" onclick="setTheme('system')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>Auto</button>
+</div>
+</div>
 <div class="sb-user">
 <div class="user-row"><div class="av av-purple">7</div><div><div class="u-email">7white@osu.local</div><div class="u-plan">Pro Plan</div></div></div>
 <button class="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>Logout</button>
@@ -27,4 +36,51 @@
 <div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 <script src="demo-part1.js"></script>
 <script src="demo-part2.js"></script>
+<script>
+// === THEME MANAGEMENT ===
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('xboard-theme', theme);
+  document.querySelectorAll('.theme-btn').forEach(b => {
+    b.classList.toggle('on', b.dataset.theme === theme);
+  });
+}
+
+// Init theme from localStorage or default to system
+(function() {
+  const saved = localStorage.getItem('xboard-theme') || 'system';
+  setTheme(saved);
+})();
+
+// === MOBILE SIDEBAR ===
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const overlay = document.querySelector('.sb-overlay');
+  sb.classList.toggle('open');
+  overlay.classList.toggle('show');
+  document.body.style.overflow = sb.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeSidebar() {
+  const sb = document.getElementById('sidebar');
+  const overlay = document.querySelector('.sb-overlay');
+  sb.classList.remove('open');
+  overlay.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Close sidebar on page navigation (mobile)
+const origGo = typeof go === 'function' ? go : null;
+if (origGo) {
+  window.go = function(pg) {
+    origGo(pg);
+    if (window.innerWidth <= 768) closeSidebar();
+  };
+}
+
+// Close sidebar on resize to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeSidebar();
+});
+</script>
 </body></html>
